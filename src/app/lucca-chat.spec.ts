@@ -1,18 +1,20 @@
 import {describe, it, expect, beforeEachProviders, inject} from 'angular2/testing';
-import {LuccaChatApp} from '../app/lucca-chat';
+import {LuccaChatApp} from '../../src/app/lucca-chat';
 
 beforeEachProviders(() => [LuccaChatApp]);
 
 describe('App: LuccaChat', () => {
-  it('should have the `defaultMeaning` as 42', inject([LuccaChatApp], (app) => {
-    expect(app.defaultMeaning).toBe(42);
+  it('should have the title as Lucca chat', inject([LuccaChatApp], (app) => {
+    expect(app.title).toBe('Lucca chat');
+  }));
+  
+  it('should have an empty message list on init', inject([LuccaChatApp], (app) => {
+    expect(app.messageList.lenght).toBe(0);
   }));
 
-  describe('#meaningOfLife', () => {
-    it('should get the meaning of life', inject([LuccaChatApp], (app) => {
-      expect(app.meaningOfLife()).toBe('The meaning of life is 42');
-      expect(app.meaningOfLife(22)).toBe('The meaning of life is 22');
-    }));
-  });
+  it('should have one element when display one message', inject([LuccaChatApp], (app) => {
+    app.DisplayNewMessage('');
+    expect(app.messageList.lenght).toBe(1);
+  }))
 });
 
