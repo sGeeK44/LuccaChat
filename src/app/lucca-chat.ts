@@ -16,6 +16,8 @@ export class LuccaChatApp {
  	}
   
 	DisplayNewMessage(newMessage : string) {
+        if (newMessage == '') return;
+        
 		this.messageList.push(newMessage);
 	}
 }

@@ -1,5 +1,5 @@
 import {describe, it, expect, beforeEachProviders, inject} from 'angular2/testing';
-import {LuccaChatApp} from '../../src/app/lucca-chat';
+import {LuccaChatApp} from './lucca-chat';
 
 beforeEachProviders(() => [LuccaChatApp]);
 
@@ -13,8 +13,13 @@ describe('App: LuccaChat', () => {
   }));
 
   it('should have one element when display one message', inject([LuccaChatApp], (app) => {
-    app.DisplayNewMessage('');
+    app.DisplayNewMessage('Msg');
     expect(app.messageList.lenght).toBe(1);
-  }))
+  }));
+
+  it('should have zero element when display one empty message', inject([LuccaChatApp], (app) => {
+    app.DisplayNewMessage('');
+    expect(app.messageList.lenght).toBe(0);
+  }));
 });
 
