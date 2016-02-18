@@ -2,6 +2,10 @@
   "name": "lucca-chat",
   "version": "0.0.0",
   "license": "Apache-2.0",
+  "scripts": {
+    "start": "npm run lite",
+    "test": "live-server --open=dist/unit-tests.html"
+  },
   "dependencies": {
     "angular2": "2.0.0-beta.0",
     "es6-promise": "^3.0.2",
@@ -15,7 +19,7 @@
     "angular-cli": "0.0.*",
     "angular-cli-github-pages": "^0.2.0",
     "ember-cli-inject-live-reload": "^1.3.0",
-    "jasmine-core": "^2.3.4",
+    "jasmine-core": "2.4.1",
     "karma": "^0.13.15",
     "karma-chrome-launcher": "^0.2.1",
     "karma-jasmine": "^0.3.6"
