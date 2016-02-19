@@ -12,10 +12,10 @@ import {EventEmitter} from 'angular2/core';
 	</div>`
 })
 export class InputChatBar {
-	inputValue : string = '';
-	@Output() newMessageSended: EventEmitter<string> = new EventEmitter<string>();
+	private inputValue : string = '';
+	@Output() public newMessageSended: EventEmitter<string> = new EventEmitter<string>();
 	
-	SendNewMessage() {
+	public SendNewMessage() : void {
 		this.newMessageSended.emit(this.inputValue);
         this.inputValue = '';
 	}

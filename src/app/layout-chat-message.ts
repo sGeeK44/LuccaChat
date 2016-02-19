@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {Output} from 'angular2/core';
 import {EventEmitter} from 'angular2/core';
+import {Message} from './message';
 
 @Component({
 	selector: 'lc-layout-chat-message',
@@ -11,11 +12,10 @@ import {EventEmitter} from 'angular2/core';
     </div>`
 })
 export class LayoutChatMessage {
-	public messageList : Array<string> = []
+	private messageList : Array<string> = []
      
-	DisplayNewMessage(newMessage : string) {
-        if (newMessage == '') return;        
-		this.messageList.push(newMessage);
-        console.log(this.messageList);
+	public DisplayNewMessage(newMessage : Message) : void {
+        if (newMessage == null) return;        
+		this.messageList.push(newMessage.Display());
 	}
 }

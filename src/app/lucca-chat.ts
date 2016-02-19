@@ -2,26 +2,25 @@ import {Component} from 'angular2/core';
 import {Title} from 'angular2/platform/browser';
 import {InputChatBar} from './input-chat-bar';
 import {LayoutChatMessage} from './layout-chat-message';
+import {Message} from './message';
 import {Identity} from './identity';
 
 @Component({
     selector: 'lucca-chat-app',
 	viewProviders: [Title],
-	providers: [LayoutChatMessage],
+	providers: [ ],
 	templateUrl: 'app/lucca-chat.html',
 	directives: [InputChatBar, LayoutChatMessage],
 	pipes: []
 })
 export class LuccaChatApp {
-    layoutMessage: LayoutChatMessage;
-    identity: Identity = new Identity();
+    private identity: Identity = new Identity();
     
-	constructor(title: Title, layoutMessage: LayoutChatMessage) {
+	public constructor(private title: Title) {
 		title.setTitle('Lucca chat');
-        this.layoutMessage = layoutMessage;
  	}
      
-	NewMessageComming(newMessage : string) {
-		this.layoutMessage.DisplayNewMessage(newMessage);
+	private NewMessageComming(layoutMessage: LayoutChatMessage, newMessageContent : string) : void {
+		layoutMessage.DisplayNewMessage(new Message(this.identity, newMessageContent));
 	}
 }

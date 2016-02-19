@@ -1,12 +1,13 @@
 
 export class Identity {
-  private static DEFAULT_NICKNAME: string = "Anonyme";
-  public nickName: string;
-    constructor() {
+    private static DEFAULT_NICKNAME: string = "Anonyme";
+    public nickName: string;
+  
+    public constructor() {
         this.RequestNickName();
     }
     
-    RequestNickName() : void
+    private RequestNickName() : void
     {        
         do
         {
@@ -15,7 +16,7 @@ export class Identity {
         while (this.NickNameIsNotSet());
     }
     
-    NickNameIsNotSet() : boolean
+    private NickNameIsNotSet() : boolean
     {
         return this.nickName == '' || this.nickName == null;
     }
