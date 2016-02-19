@@ -1,10 +1,10 @@
 import {Identity} from './identity';
 
 export class Message {
-    public constructor(private identity: Identity, private content: string) {}
+    public sentAt: Date = new Date();
+    public author: string;
 
-    public Display() : string
-    {
-        return this.identity.nickName + ': ' + this.content;
-    }
+    public constructor(identity: Identity, public text: string) {
+        this.author = identity.nickName;
+     }
 }
