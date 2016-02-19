@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {Title} from 'angular2/platform/browser';
 import {InputChatBar} from './input-chat-bar';
 import {LayoutChatMessage} from './layout-chat-message';
+import {Identity} from './identity';
 
 @Component({
     selector: 'lucca-chat-app',
@@ -13,11 +14,11 @@ import {LayoutChatMessage} from './layout-chat-message';
 })
 export class LuccaChatApp {
     layoutMessage: LayoutChatMessage;
-    nickName: string;
+    identity: Identity = new Identity();
+    
 	constructor(title: Title, layoutMessage: LayoutChatMessage) {
 		title.setTitle('Lucca chat');
         this.layoutMessage = layoutMessage;
-        this.nickName = prompt('Quel est votre pseudo ?');
  	}
      
 	NewMessageComming(newMessage : string) {
