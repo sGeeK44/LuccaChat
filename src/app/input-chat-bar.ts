@@ -4,11 +4,11 @@ import {EventEmitter} from 'angular2/core';
 
 @Component({
 	selector: 'lc-input-chat-bar',
-	styles: ['.input-chat-bar { position: absolute; bottom: 0; margin: 10px; width: 100% }'],
+	styles: [],
 	template:
 	`<div id='inputChatBar' class=input-chat-bar>
-		<input type="text" placeholder="Votre message..." size="60" autofocus [(ngModel)]="inputValue" #inputMessage/>
-		<input type='button' style='margin-left: 10px' (click)='SendNewMessage();inputMessage.focus()' value='Envoyer'/>
+		<input type="text" style='width:80%' placeholder="Votre message..." autofocus [(ngModel)]="inputValue" #inputMessage/>
+		<input type='button' style='margin-left:10px;' (click)='SendNewMessage();inputMessage.focus()' value='Envoyer'/>
 	</div>`
 })
 export class InputChatBar {
