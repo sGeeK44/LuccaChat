@@ -13,9 +13,11 @@ import {LayoutChatMessage} from './layout-chat-message';
 })
 export class LuccaChatApp {
     layoutMessage: LayoutChatMessage;
+    nickName: string;
 	constructor(title: Title, layoutMessage: LayoutChatMessage) {
 		title.setTitle('Lucca chat');
         this.layoutMessage = layoutMessage;
+        this.nickName = prompt('Quel est votre pseudo ?');
  	}
      
 	NewMessageComming(newMessage : string) {
