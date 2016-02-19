@@ -1,4 +1,6 @@
+import {Injectable} from "angular2/core";
 
+@Injectable()
 export class Identity {
     private static DEFAULT_NICKNAME: string = "Anonyme";
     public nickName: string;

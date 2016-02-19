@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {Output} from 'angular2/core';
 import {EventEmitter} from 'angular2/core';
 import {Message} from './message';
+import {Bus, BusObserver, MessageBus} from './message-bus';
 
 @Component({
 	selector: 'lc-layout-chat-message',
@@ -34,11 +35,21 @@ import {Message} from './message';
         </div>
     </div>`
 })
-export class LayoutChatMessage {
+export class LayoutChatMessage implements BusObserver {
 	private messageList : Array<Message> = []
-     
-	public DisplayNewMessage(newMessage : Message) : void {
-        if (newMessage == null) return;        
+    
+    constructor(private bus: Bus)
+    {
+        bus.Subsribe(this);
+    }
+    
+	public DisplayNewMessage(newMessage : Message) : void {        
+        if (newMessage == null) return;      
 		this.messageList.push(newMessage);
 	}
+    
+    public Consume(message: MessageBus) : void
+    {
+        if (message.topic == 'Send') this.DisplayNewMessage(Message.Deserialize(message.content));
+    }
 }

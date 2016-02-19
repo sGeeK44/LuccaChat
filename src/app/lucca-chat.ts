@@ -13,10 +13,8 @@ import {Identity} from './identity';
 	directives: [InputChatBar, LayoutChatMessage],
 	pipes: []
 })
-export class LuccaChatApp {
-    private identity: Identity = new Identity();
-    
-	public constructor(private title: Title) {
+export class LuccaChatApp {    
+	public constructor(private title: Title, private identity: Identity) {
 		title.setTitle('Lucca chat');
  	}
      

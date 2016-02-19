@@ -1,5 +1,4 @@
 import {Injectable} from "angular2/core";
-import {BrowserDomAdapter} from "angular2/platform/browser";
 
 @Injectable()
 export class Bus {
@@ -11,15 +10,12 @@ export class Bus {
     }
 
     private subscribeStorageEvent() {
-        let dom = new BrowserDomAdapter();
-        let windowEvents = dom.getGlobalEventTarget("window");
-        windowEvents.addEventListener("storage", this.TreatMessage, false);
+        window.addEventListener("storage", this.TreatMessage.bind(this));
     }
 
     private TreatMessage(event: StorageEvent) : string
     {
-        if (!this.IsMessageForBus(event)) return;
-        
+        if (!this.IsMessageForBus(event)) return;        
         this.SendToSubscribers(event);
     }
 
