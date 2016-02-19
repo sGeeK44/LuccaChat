@@ -3,3 +3,4 @@
 <section>
 	<p *ngFor="#message of messageList">{{message}}</p>
 </section>
+<lc-input-chat-bar (newMessageSended)='DisplayNewMessage($event)'></lc-input-chat-bar>
