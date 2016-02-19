@@ -1,6 +1,4 @@
-import {Component} from 'angular2/core';
-import {Output} from 'angular2/core';
-import {EventEmitter} from 'angular2/core';
+import {Component, Output, ElementRef, ViewChild, EventEmitter} from 'angular2/core';
 import {Message} from './message';
 import {Bus, BusObserver, MessageBus} from './message-bus';
 
@@ -8,6 +6,7 @@ import {Bus, BusObserver, MessageBus} from './message-bus';
 	selector: 'lc-layout-chat-message',
 	styles: [
         `.layout-container {
+            overflow:auto;
             position: relative;
             width: 100%;
         }
@@ -36,7 +35,7 @@ import {Bus, BusObserver, MessageBus} from './message-bus';
     </div>`
 })
 export class LayoutChatMessage implements BusObserver {
-	private messageList : Array<Message> = []
+	private messageList : Array<Message> = [];
     
     constructor(private bus: Bus)
     {
