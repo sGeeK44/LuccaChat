@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, ElementRef, AfterViewChecked} from 'angular2/core';
 import {Title} from 'angular2/platform/browser';
 import {InputChatBar} from './input-chat-bar';
 import {LayoutChatMessage} from './layout-chat-message';
@@ -30,12 +30,22 @@ import {Identity} from './identity';
 	directives: [InputChatBar, LayoutChatMessage],
 	pipes: []
 })
-export class LuccaChatApp {    
-	public constructor(private title: Title, private identity: Identity) {
+export class LuccaChatApp implements AfterViewChecked {    
+	public constructor(private title: Title, private identity: Identity, private element: ElementRef) {
 		title.setTitle('Lucca chat');
  	}
      
 	private NewMessageComming(layoutMessage: LayoutChatMessage, newMessageContent : string) : void {
 		layoutMessage.DisplayNewMessage(new Message(this.identity, newMessageContent));
 	}
+    
+    ngAfterViewChecked() {
+        this.scrollToBottom();        
+    }
+    
+    private scrollToBottom(): void
+    {
+        let container = this.element.nativeElement.querySelector('.layout-chat-message');
+        container.scrollTop = container.scrollHeight;
+    }
 }
