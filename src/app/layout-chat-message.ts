@@ -1,4 +1,4 @@
-import {Component, Output, ElementRef, ViewChild, EventEmitter} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {Message} from './message';
 import {Bus, BusObserver, MessageBus} from './message-bus';
 
@@ -20,7 +20,7 @@ import {Bus, BusObserver, MessageBus} from './message-bus';
      ],
 	template:
 	`<div class='layout-container'>
-        <div class='message' *ngFor="#message of messageList">
+        <div *ngFor="#message of messageList">
             <div class='message-info'>
                 <span class='message-author'>{{message.author}}</span> dit:
                 <span class='message-time'>{{message.sentAt  | date:'HH:mm:ss'}}</span>
