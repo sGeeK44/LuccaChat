@@ -32,9 +32,10 @@ export class Bus {
     
     private SendToSubscribers(event: StorageEvent) : void
     {
+        let message = this.GetMessage(event);
         this.observerList.forEach(element => {
-            element.Consume(this.GetMessage(event));
-        });
+            element.Consume(message);
+        });                
     }
 
     private IsMessageForBus(event: StorageEvent) : boolean
