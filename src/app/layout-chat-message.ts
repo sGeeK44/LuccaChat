@@ -5,12 +5,7 @@ import {Bus, BusObserver, MessageBus} from './message-bus';
 @Component({
 	selector: 'lc-layout-chat-message',
 	styles: [
-        `.layout-container {
-            overflow:auto;
-            position: relative;
-            width: 100%;
-        }
-        .message-author {
+        `.message-author {
             font-weight: bold;
         }
         .message-time {

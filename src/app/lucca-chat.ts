@@ -11,19 +11,18 @@ import {Identity} from './identity';
     styles: [ 
         `.layout-chat-message
         {
-            position:absolute;
-            top:60px;
-            bottom:40px;
+            position:absolute;            
+            overflow:auto;
+            width: 100%;
+            top:80px;
+            bottom:50px;
             display: inline-block;
-            width: 95%;
-            border:1px solid black;
         }
         .input-chat-bar
         {
             position: absolute;
             bottom: 0;
-            margin: 10px;
-            width: 95%;
+            width: 100%;
         }`
     ],
 	providers: [ ],
