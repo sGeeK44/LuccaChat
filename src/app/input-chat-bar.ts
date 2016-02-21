@@ -4,7 +4,7 @@ import {Output} from 'angular2/core';
 import {EventEmitter} from 'angular2/core';
 import {Bus, MessageBus} from './message-bus';
 import {Identity} from './identity';
-import {Message} from './message';
+import {UserMessage} from './message';
 
 @Component({
 	selector: 'lc-input-chat-bar',
@@ -27,7 +27,7 @@ export class InputChatBar {
 	
 	public SendNewMessage() : void {
 		this.newMessageSended.emit(this.inputValue);
-        this.bus.Publish(new MessageBus('Send', (new Message(this.identity, this.inputValue)).Serialize()));
+        this.bus.Publish(new MessageBus('Send', (new UserMessage(this.identity, this.inputValue)).Serialize()));
         this.ClearInputValue();
 	}
     

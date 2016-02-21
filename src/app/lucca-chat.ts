@@ -3,7 +3,7 @@ import {Title} from 'angular2/platform/browser';
 import {InputChatBar} from './input-chat-bar';
 import {LayoutChatMessage} from './layout-chat-message';
 import {InfoChatBar} from './info-chat-bar';
-import {Message} from './message';
+import {UserMessage, ConnectionMessage} from './message';
 import {Identity} from './identity';
 import {Bus, MessageBus} from './message-bus';
 
@@ -39,11 +39,11 @@ export class LuccaChatApp implements AfterViewChecked {
                        private element: ElementRef,
                        private bus: Bus) {
 		title.setTitle('Lucca chat');
-        bus.Publish(new MessageBus('Connect', identity.nickName));
+        bus.Publish(new MessageBus('Connect', new ConnectionMessage(identity).Serialize()));
  	}
      
 	private NewMessageComming(layoutMessage: LayoutChatMessage, newMessageContent : string) : void {
-		layoutMessage.DisplayNewMessage(new Message(this.identity, newMessageContent));
+		layoutMessage.DisplayNewMessage(new UserMessage(this.identity, newMessageContent));
 	}
     
     ngAfterViewChecked() {

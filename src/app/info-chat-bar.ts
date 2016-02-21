@@ -8,13 +8,11 @@ import {Identity} from './identity';
 	styles: [ ],
 	template: 
         `<p>&nbsp;
-            <span *ngIf='writterList.length == 0'>{{info}}</span>
             <em *ngIf='writterList.length == 1'>{{writterList[0].identity.nickName}} écrit un message...</em>
             <em *ngIf='writterList.length > 1'>Plusieurs personnes écrivent un message...</em>
         </p>`
 })
 export class InfoChatBar implements BusObserver {
-    private info: string;
     private writterList: Array<Writter> = [];
     
     constructor(private bus: Bus)
@@ -25,33 +23,7 @@ export class InfoChatBar implements BusObserver {
     
     public Consume(message: MessageBus) : void
     {
-        if (message.topic == 'Connect') this.DisplayNewConnection(message.content);
         if (message.topic == 'Typing') this.AddWritter(Identity.Deserialize(message.content));
-    }
-    
-	private DisplayNewConnection(nickName: string) : void {   
-		this.Display(nickName + ' vient de se connecter');
-	}
-    
-    private Display(message: string)
-    {
-        this.SetInfo(message);
-        this.ClearInfoAfterThreeSecond();
-    }
-    
-    private SetInfo(message : string) : void
-    {
-        this.info = message;        
-    }
-    
-    private ClearInfoAfterThreeSecond() : void
-    {
-        setTimeout(() => { this.CleanInfo(); }, 3000);
-    }
-    
-    private CleanInfo() : void
-    {
-        this.info = null;
     }
     
     private AddWritter(writterIdentity: Identity) : void

@@ -1,28 +1,43 @@
 import {Identity} from './identity';
 
-export class Message {
-    public sentAt: Date = new Date();
-    public author: string;
-    
-    public constructor(identity: Identity, public text: string) {
-        if (identity != null) this.author = identity.nickName;
-     }
+export abstract class Message {    
+    public constructor(identity: Identity, public type: string) { }
      
      public Serialize() : string
      {
          return JSON.stringify(this);
      }
+}
+
+export class UserMessage extends Message
+{
+    public sentAt: Date = new Date();
+    
+    public constructor(private identity: Identity, public text: string) {
+        super(identity, 'UserMessage');
+     }
      
      public static Deserialize(message: string) : Message
      {
-         return Message.CreateTypedMessage(JSON.parse(message));         
+         let result = JSON.parse(message);
+         UserMessage.TypeMessage(result);
+         return result;         
      }
      
-     private static CreateTypedMessage(unTypedMessage: any) : Message
+     private static TypeMessage(unTypedMessage: any) : void
      {
-         let result = new Message(null, unTypedMessage.text);
-         result.author = unTypedMessage.author;
-         result.sentAt = new Date(unTypedMessage.sentAt);
-         return result;
+         unTypedMessage.sentAt = new Date(unTypedMessage.sentAt);
+     }
+}
+
+export class ConnectionMessage extends Message
+{    
+    public constructor(private identity: Identity) {
+        super(identity, 'ConnectionMessage');
+     }
+     
+     public static Deserialize(message: string) : Message
+     {
+         return JSON.parse(message);         
      }
 }
