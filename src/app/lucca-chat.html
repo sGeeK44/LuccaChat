@@ -4,8 +4,9 @@
     </div>
     <div class="panel-body layout-chat-message">
         <lc-layout-chat-message #layoutMessage></lc-layout-chat-message>
-    </div>    
+    </div>   
     <div class="panel-footer input-chat-bar" style="postision:absolute;bottom:0px">
+        <lc-info-chat-bar></lc-info-chat-bar> 
         <lc-input-chat-bar (newMessageSended)='NewMessageComming(layoutMessage, $event)'></lc-input-chat-bar>
     </div>
 </div>
