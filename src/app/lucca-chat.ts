@@ -39,7 +39,7 @@ export class LuccaChatApp implements AfterViewChecked {
                        private element: ElementRef,
                        private bus: Bus) {
 		title.setTitle('Lucca chat');
-        bus.Publish(new MessageBus('Connect', new ConnectionMessage(identity).Serialize()));
+        bus.Publish(new MessageBus(Bus.CONNECT_TOPIC, new ConnectionMessage(identity).Serialize()));
  	}
      
 	private NewMessageComming(layoutMessage: LayoutChatMessage, newMessageContent : string) : void {

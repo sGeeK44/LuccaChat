@@ -23,7 +23,7 @@ export class InfoChatBar implements BusObserver {
     
     public Consume(message: MessageBus) : void
     {
-        if (message.topic == 'Typing') this.AddWritter(Identity.Deserialize(message.content));
+        if (message.topic == Bus.SEND_TOPIC) this.AddWritter(Identity.Deserialize(message.content));
     }
     
     private AddWritter(writterIdentity: Identity) : void

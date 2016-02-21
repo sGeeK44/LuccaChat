@@ -47,7 +47,7 @@ export class LayoutChatMessage implements BusObserver {
     
     public Consume(message: MessageBus) : void
     {
-        if (message.topic == 'Send') this.DisplayNewMessage(UserMessage.Deserialize(message.content));
-        if (message.topic == 'Connect') this.DisplayNewMessage(ConnectionMessage.Deserialize(message.content));
+        if (message.topic == Bus.SEND_TOPIC) this.DisplayNewMessage(UserMessage.Deserialize(message.content));
+        if (message.topic == Bus.CONNECT_TOPIC) this.DisplayNewMessage(ConnectionMessage.Deserialize(message.content));
     }
 }

@@ -3,6 +3,10 @@ import {Injectable} from "angular2/core";
 @Injectable()
 export class Bus {
     private static LOCALSTORAGE_KEY: string = "LuccaChatBus";
+    public static CONNECT_TOPIC = 'Connect';
+    public static SEND_TOPIC = 'Send';
+    public static TYPING_TOPIC = 'Typing';
+    
     private observerList : Array<BusObserver> = []
 
     public constructor() {

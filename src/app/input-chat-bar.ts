@@ -27,14 +27,14 @@ export class InputChatBar {
 	
 	public SendNewMessage() : void {
 		this.newMessageSended.emit(this.inputValue);
-        this.bus.Publish(new MessageBus('Send', (new UserMessage(this.identity, this.inputValue)).Serialize()));
+        this.bus.Publish(new MessageBus(Bus.SEND_TOPIC, (new UserMessage(this.identity, this.inputValue)).Serialize()));
         this.ClearInputValue();
 	}
     
     private InformWhenTypingMessage() : void
     {
         this.input.valueChanges.subscribe(input => {
-            this.bus.Publish(new MessageBus('Typing', this.identity.Serialize()));
+            this.bus.Publish(new MessageBus(Bus.TYPING_TOPIC, this.identity.Serialize()));
         });
     }
     
