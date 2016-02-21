@@ -22,6 +22,7 @@ export class Bus {
     public Publish(message: MessageBus) : void
     {
         let serializedMessage = this.Serialize(message);
+        localStorage.clear();
         localStorage.setItem(Bus.LOCALSTORAGE_KEY, serializedMessage);
     }
     
