@@ -9,6 +9,16 @@ export class Identity {
     public constructor() {
         this.RequestNickName();
     }
+     
+     public Serialize() : string
+     {
+         return JSON.stringify(this);
+     }
+     
+     public static Deserialize(message: string) : Identity
+     {
+         return JSON.parse(message);         
+     }
     
     private RequestNickName() : void
     {        
